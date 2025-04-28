@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/spring-webflux-reactive-example" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/spring-webflux-example/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-microservice-webflux-example/commonservice/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-microservice-webflux-example/paymentprocessingservice/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-microservice-webflux-example/paymentservice/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-microservice-webflux-example/profileservice/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/02-webflux-playground/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/03-final-project/trade-platofrm/aggregator-service/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/03-final-project/trade-platofrm/customer-service/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/04-r2dbc-vs-jdbc/reactive-vs-traditional-postgres/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/04-r2dbc-vs-jdbc/reactive-vs-traditional-postgres/reactive/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/04-r2dbc-vs-jdbc/reactive-vs-traditional-postgres/traditional/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/06-old-projects/order-service/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/06-old-projects/product-service/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/06-old-projects/user-service/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-reactive-example/06-old-projects/webflux-demo/pom.xml" />
+        <option value="$PROJECT_DIR$/spring-microservice-webflux-example/accountservice/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="17" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

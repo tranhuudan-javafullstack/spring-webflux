@@ -7,8 +7,9 @@ import com.huudan.commonservice.common.CommonException;
 import com.huudan.commonservice.model.PaymentDTO;
 import com.huudan.commonservice.model.ProfileDTO;
 import com.huudan.commonservice.utils.Constant;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import reactor.kafka.receiver.KafkaReceiver;
@@ -20,11 +21,11 @@ import java.util.Objects;
 
 @Service
 @Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 public class EventConsumer {
     Gson gson = new Gson();
-    private final AccountService accountService;
-
-    private final EventProducer eventProducer;
+    AccountService accountService;
+    EventProducer eventProducer;
 
     public EventConsumer(ReceiverOptions<String, String> receiverOptions, AccountService accountService, EventProducer eventProducer) {
         this.accountService = accountService;
@@ -57,9 +58,8 @@ public class EventConsumer {
             if (result) {
                 paymentDTO.setStatus(Constant.STATUS_PAYMENT_PROCESSING);
                 eventProducer.send(Constant.PAYMENT_CREATED_TOPIC, gson.toJson(paymentDTO)).subscribe();
-            } else {
-                throw new CommonException("A02", "Balance not enough", HttpStatus.BAD_REQUEST);
             }
+            throw new CommonException("A02", "Balance not enough", HttpStatus.BAD_REQUEST);
         });
     }
 
@@ -68,8 +68,7 @@ public class EventConsumer {
         PaymentDTO paymentDTO = gson.fromJson(receiverRecord.value(), PaymentDTO.class);
         if (Objects.equals(paymentDTO.getStatus(), Constant.STATUS_PAYMENT_SUCCESSFUL)) {
             accountService.subtract(paymentDTO.getAmount(), paymentDTO.getAccountId()).subscribe();
-        } else {
-            accountService.rollbackReserved(paymentDTO.getAmount(), paymentDTO.getAccountId()).subscribe();
         }
+        accountService.rollbackReserved(paymentDTO.getAmount(), paymentDTO.getAccountId()).subscribe();
     }
 }

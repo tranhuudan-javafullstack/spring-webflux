@@ -3,6 +3,9 @@ package com.huudan.accountservice.service;
 import com.huudan.accountservice.model.AccountDTO;
 import com.huudan.accountservice.repository.AccountRepository;
 import com.huudan.commonservice.common.CommonException;
+import lombok.AccessLevel;
+import lombok.RequiredArgsConstructor;
+import lombok.experimental.FieldDefaults;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -10,13 +13,10 @@ import reactor.core.publisher.Mono;
 
 @Service
 @Slf4j
+@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@RequiredArgsConstructor
 public class AccountService {
-
-    private final AccountRepository accountRepository;
-
-    public AccountService(AccountRepository accountRepository) {
-        this.accountRepository = accountRepository;
-    }
+    AccountRepository accountRepository;
 
     public Mono<AccountDTO> createNewAccount(AccountDTO accountDTO) {
         return Mono.just(accountDTO)
